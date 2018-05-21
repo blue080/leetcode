@@ -22,3 +22,21 @@ var twoSum = function (nums, target) {
   return result;
 };
 console.log(twoSum([1, 3, 4], 7));
+
+const twoSum1 = (nums, target) => {
+    // target 不能大于等于 Number.MAX_SAFE_INTEGER
+    // 时间复杂度 O(n)
+    // 空间复杂度 O(1)
+    let firstNum = null;
+    let secondNumIndex = -1;
+    for (let i = 0; i < nums.length; i += 1) {
+        firstNum = nums[i];
+        nums[i] = Number.MAX_SAFE_INTEGER;
+        secondNumIndex = nums.indexOf(target - firstNum);
+        if (secondNumIndex > -1) {
+            return [i, secondNumIndex];
+        }
+        nums[i] = firstNum;
+    }
+    return [-1, -1];
+}
